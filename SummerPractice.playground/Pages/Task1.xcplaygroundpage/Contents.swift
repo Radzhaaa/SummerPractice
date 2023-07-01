@@ -41,3 +41,8 @@ func filter(array: [Int], condition: ((Int) -> Bool)) -> [Int] {
     }
     return filteredArray
 }
+
+print(fibonacci(n: 4))
+print(sort(rawArray: [2,1,4,3]))
+print(firstLetter(strings: ["eds,", "wed"]))
+print(filter(array: [1,2,3], condition: {$0 % 2 == 1}))

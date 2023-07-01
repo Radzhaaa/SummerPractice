@@ -11,8 +11,11 @@ struct Book {
     var type: BookType
 }
 
-
-protocol Borrowable {
+/*оператор === используется только у ссылочных типов
+переменную isCheckedOut лучше указать в протоколе
+ */
+protocol Borrowable: AnyObject {
+    var isCheckedOut: Bool { get set }
     func borrow()
     func returnBook()
 }
@@ -20,28 +23,29 @@ protocol Borrowable {
 
 class LibraryItem {
     var catalogID: Int
-    var isCheckedOut: Bool
+//    var isCheckedOut: Bool
 
     init(catalogID: Int) {
         self.catalogID = catalogID
-        self.isCheckedOut = false
+//        self.isCheckedOut = false
     }
 
     func displayCatalogID() {
         print("Каталожный номер: \(catalogID)")
     }
 
-    func checkOut() {
-        isCheckedOut = true
-    }
-
-    func returnToLibrary() {
-        isCheckedOut = false
-    }
+//    func checkOut() {
+//        isCheckedOut = true
+//    }
+//
+//    func returnToLibrary() {
+//        isCheckedOut = false
+//    }
 }
 
 
 class BookItem: LibraryItem, Borrowable {
+    var isCheckedOut: Bool = false
     var book: Book
     
     init(catalogID: Int, book: Book) {
@@ -69,6 +73,7 @@ class BookItem: LibraryItem, Borrowable {
 }
 
 class MagazineItem: LibraryItem, Borrowable {
+    var isCheckedOut: Bool = false
     var magazineTitle: String
     
     init(catalogID: Int, magazineTitle: String) {
